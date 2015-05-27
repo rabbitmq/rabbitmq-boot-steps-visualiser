@@ -1,0 +1,36 @@
+<h1>Boot Steps</h1>
+<style type="text/css" media="screen">
+#bootsteps {
+  width: 90%;
+  height: 70%;
+}
+</style>
+<div id="bootsteps"></div>
+<%
+$.ajax({
+  url: "js/viz.js",
+  dataType: "script",
+  cache: true,
+  success: function() {
+    var svgData = Viz(boot_steps_visualiser, "svg", "dot");
+    //
+    $.ajax({
+      url: "js/svg-pan-zoom.min.js",
+      dataType: "script",
+      cache: true,
+      success: function() {
+        $("#bootsteps").html(svgData);
+        var s = $('svg');
+        s.removeAttr('viewBox');
+        s.attr("width", "100%");
+        s.attr("height", "100%");
+        var pz = svgPanZoom('svg', {minZoom: 0.25});
+        pz.resize();
+        pz.fit();
+        pz.center();
+      }
+    });
+    //
+  }
+});
+%>

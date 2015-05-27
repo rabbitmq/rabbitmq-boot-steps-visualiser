@@ -1,0 +1,11 @@
+This package, the RabbitMQ Visualiser is licensed under the MPL. For
+the MPL, please see LICENSE-MPL-RabbitMQ.
+
+This package makes use of the following third party libraries:
+
+viz.js - https://github.com/mdaines/viz.js - MIT License, see LICENSE-MIT-visjs
+
+svg-pan-zoom - https://github.com/ariutta/svg-pan-zoom - BSD license, see LICENSE-BSD-svg-pan-zoom
+
+If you have any questions regarding licensing, please contact us at
+info@rabbitmq.com.
