@@ -19,6 +19,7 @@
 
 boot_steps_as_dot() ->
     Header = ["digraph BootSteps {"],
+    Attribs = ["node [fontname = monospace];"],
     Tail = ["}"],
     Steps = rabbit_boot_steps:find_steps(),
     Res =
@@ -30,7 +31,7 @@ boot_steps_as_dot() ->
                                         proplists:get_value(enables, Step)),
                   [Reqs, Ens | Acc]
           end, [], Steps),
-    [lists:concat(Header ++ Res ++ Tail)].
+    [lists:concat(Header ++ Attribs ++ Res ++ Tail)].
 
 process_enables(_StepName, undefined) ->
     [];
