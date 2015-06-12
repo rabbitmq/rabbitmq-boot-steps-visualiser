@@ -14,7 +14,7 @@ https://github.com/videlalvaro/rabbit-internals/blob/master/rabbit_boot_process.
 
 It looks like this:
 
-![Web Interface](https://raw.githubusercontent.com/rabbitmq/rabbitmq-boot-steps-visualiser/master/visualiser_screenshot.png).
+![Web Interface](https://raw.githubusercontent.com/rabbitmq/rabbitmq-boot-steps-visualiser/master/docs/visualiser_screenshot.png)
 
 
 # Installing #
