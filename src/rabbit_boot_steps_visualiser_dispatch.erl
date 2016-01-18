@@ -19,6 +19,6 @@
 
 -export([dispatcher/0, web_ui/0]).
 
-dispatcher() -> [{["boot_steps_visualiser"], rabbit_boot_steps_visualiser_wm, []}].
+dispatcher() -> [{"/boot_steps_visualiser", rabbit_boot_steps_visualiser_wm, []}].
 
 web_ui()     -> [{javascript, <<"boot_steps_visualiser.js">>}].
