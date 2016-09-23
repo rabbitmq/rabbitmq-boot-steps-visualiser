@@ -21,7 +21,6 @@
 -import(rabbit_misc, [pget/2]).
 
 -include_lib("rabbitmq_management/include/rabbit_mgmt.hrl").
--include_lib("amqp_client/include/amqp_client.hrl").
 
 %%--------------------------------------------------------------------
 init(_, _, _) -> {upgrade, protocol, cowboy_rest}.
