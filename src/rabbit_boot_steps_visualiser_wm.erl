@@ -15,20 +15,18 @@
 
 -module(rabbit_boot_steps_visualiser_wm).
 
--export([init/3]).
--export([rest_init/2, to_json/2, content_types_provided/2, is_authorized/2]).
+-export([init/1, to_json/2, content_types_provided/2, is_authorized/2]).
 
 -import(rabbit_misc, [pget/2]).
 
 -include_lib("rabbitmq_management/include/rabbit_mgmt.hrl").
+-include_lib("webmachine/include/webmachine.hrl").
 
 %%--------------------------------------------------------------------
-init(_, _, _) -> {upgrade, protocol, cowboy_rest}.
-
-rest_init(ReqData, _) -> {ok, ReqData, #context{}}.
+init(_Config) -> {ok, #context{}}.
 
 content_types_provided(ReqData, Context) ->
-    {[{<<"application/json">>, to_json}], ReqData, Context}.
+    {[{"application/json", to_json}], ReqData, Context}.
 
 to_json(ReqData, Context) ->
     Steps = rabbit_boot_steps_visualiser_utils:boot_steps_as_dot(),
