@@ -1,4 +1,5 @@
 PROJECT = rabbitmq_boot_steps_visualiser
+PROJECT_DESCRIPTION = RabbitMQ Boot Steps Visualiser
 
 DEPS = rabbit_common rabbit rabbitmq_management
 

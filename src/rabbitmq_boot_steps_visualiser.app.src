@@ -1,6 +1,0 @@
-{application, rabbitmq_boot_steps_visualiser,
- [{description, "RabbitMQ Boot Steps Visualiser"},
-  {vsn, ""},
-  {modules, []},
-  {registered, []},
-  {applications, [kernel, stdlib, rabbit_common, rabbit, rabbitmq_management]}]}.
