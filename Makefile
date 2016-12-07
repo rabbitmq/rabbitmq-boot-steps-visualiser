@@ -1,4 +1,9 @@
 PROJECT = rabbitmq_boot_steps_visualiser
+PROJECT_DESCRIPTION = RabbitMQ Boot Steps Visualiser
+
+define PROJECT_APP_EXTRA_KEYS
+	{broker_version_requirements, ["3.7.0"]}
+endef
 
 DEPS = rabbit_common rabbit rabbitmq_management
 
