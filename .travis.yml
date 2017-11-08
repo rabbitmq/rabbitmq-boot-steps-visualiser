@@ -7,18 +7,23 @@ notifications:
     - alerts@rabbitmq.com
 addons:
   apt:
+    sources:
+      - sourceline: deb https://packages.erlang-solutions.com/ubuntu trusty contrib
+        key_url: https://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc
     packages:
       - awscli
-      - xsltproc
+      # Use Elixir from Erlang Solutions. The provided Elixir is
+      # installed with kiex but is old. We also can't use kiex to
+      # install a newer one because of GitHub API rate limiting.
+      - elixir=1.4.5-1
 cache:
   apt: true
 env:
   global:
-    - secure: mVgdY+3R5M/iPA1CyVHR7LrRvhDGCKO1TtURsy4icBny0ffdWeSUK7JN2vUh2+3FE+0NXcvzd+xnloEEJFATY8dtEKuA6LQzLRrDYcSGxdr30ynoytArEVjH3Cfjm06zCzMe6wMJYkdyVcxNybKEhecE6UsK3k3DbXCo8IMV4HfK1nh7S1cHXtUbMQVPw7Rg32Gu9DS07V4MCSkOQ4y5GKzJ7avaCPWsse3VKbJIe4y7w2LlesRacJS1DWgJyfgB+q+cVNgXtmtaaXSCbbkm1zpSaUmhsaD1YasMGTCBWeqU3Eelys4z7wtR+wxcTTscXuF6aj53ecHalevOGTs5QfNcGlsLQzssBBZqp7IbkGCp6BmPuO7WL4QDR8R0BlvCnmK4MvRntQDSd1ocSso/0GW6HX37qGZ7q7SMCgELjp4DG3UiBlVRAZ/1tXUmTnv4PfrrPR0GeIouCFO7e7XB4dxwigZmyNNgL9R6w7Ga4Mfa8pTGsMQeDBZvRyebwM4Dkg1UHXBzLdaoGzZh7f/tUVEYQOBFzQJiPvOsplkN9DmDcHDJ/z9DEOupOF/fWrf0QP0ekymieNJRxx5SEtepULHO7EwLv7gctGzHSA0lWZP5zGIe3n8PjoQZf/1jAA0B+I27inlMbYS2Q3wVUTiBlvgWeSHvzm3EOA7O2q2OWwM=
-    - secure: Jx4WfQF3uWYghiIJ2Q1uL8KU7jsMMgffJdWTaCWLehGiKamJr09IdjWfp8/vq60ybXKfD0QOrQw8MlZXbhBQ4b5FvE7f337LSZ8dP0OHEuIlZqwWZeqlrKfq6ob+u22x1NMkOyM3eLcmy5lCVEVcJKw3VR9mCxFlObwkaBXegtE1WEMyjE81TdqBAnxyOY4YW9qKxtsfn8b48vz+JSnJAc6oJHCOD0t7s5JZkEc2tE6rGRXQVqwrhIZZQcnGtpGaFfZfc2B4DUrKigika9dRtkY8VmZaCe5Hnsn1wdB4zzpfiDhhrQF3cVNt5gcuuvBEOGpJztILw2HXm1Z1/SZ00oYs7Pkwv5rH+XZdQ9eyeIUIhl4IphXNLXC+QBia1vH6ek+EPr0CJQbir9N4OVxBaHGF+XpCnmzBE4n+keXHdEZFdI1sQUBze9o507zsxkBPp4GSBbmhqnflnavLRnsmoKpYPZNPG7xQLJagf/WZlCPk+JuAespHjyIF9iq+yv90v//v4hH4YT5Z5Wm54b+jlCmCoPgm3sNfLmJn52M5dgS9iE6sdz5LyI180OS8L5b47BuE1NMWqsHNRAG+fuDEGwyChVBGATjkFDISDzf/BkbF+20y4iB+yYLFC7Kw16qpubNuzdNzZhkqOH8HAkllGjRt/ZH5Ux/17grAGjhWIXI=
+    - secure: RchLg0uEBvspn3gXHvSqtdrGLX/1CkYzc/Vb45ERkHAC/Ehw927llwupEGrVbo9s7Ssxd2Wc4LnSHslWsaOUN3p0QtP3SSYjLngVU381QHrfGkhIN/Nsy8D9XO3EK7CrMGauBnHwkxE7RXjtkRio3re1pW4apkL1p0fv5LBsSZ34ujSt7A87P8ihcI6z+nMBqn3IVHAbEFBYosFmakbS8e5mEs81AYucQG9JAz18D/5zMmSci0r9zLudX6xUcj4r2tHn0jgUG5YiLjtx/F7YBXyqq7BThZjOlz0ugeih7p2dEmaLt9V6xHsoAJQepBB0NyH4QySrTVv4nV0MxOUq0zn3p/e+YuKnr36pTZJbi/tkur/PDpr+uewzSWlygyN54xnMI8EidnjO/xhM8tJNwSzoLAAQEN0ECWpHgP/09/4zBE1eld9GZcLsXnl+4rkh9imfO7Ts3bHnjB3SAYk2NlExmzWlanefJjLb/K8YY9Uphkdd9KkO8NlxZSbVfxtTRVYF9gh510b3cpkDXSyVIAszwOUJjC7J4qiymaatL/5FrnsjMMk0sNT4PckHNcdlNBIsK9bQwTEBUJ8h/S5cin63Y+1ICU1iCySz4jHAnzjWuo1Vm/+zPfYqB9PgDOuZVrVCYh3S7vWOMLnBcOhs0IBq8Ts/eIAPGHQZdCdI7X0=
+    - secure: mcbUhGq8zQV9YpsaDPeJWn0Lg3M8430akaTWXc22VmgDuPWqIWA8IppdDI6WkTgWCku7qaTy0noeJHr7YcTSyfpRa78IvOTVuA0gjxo6GtF9pLPyfqkDfrq4p7L7EEIkR44EMYQ+EXZ3O9UHMqMhli3CM4GhEJaMqU5FVwnlsFOmWMb7uZYvVsA41DCCT2/8IviujF8zq6JFBhlqcyS00zdU4L4wr9X+RnS/+FjDr5rcmU4mwvZP2UvbtUEw8xwM11Czblkp8t54wg+lEKFg35Mg9bPc2MHUpO4wuSVUr6+efF1jtRduvpt2i88oY83uA0esgs80tCEO1WH1p4gOMsUO3bOh5thAQQji6HSiTOQ46XnnWprEoj+Q2cCE3QYroLkWC4sWOYqZx0U3RUGtrSdno7oOTyB0Qq7J+loFuKN4c5G8ZRvLZIB3Y9WW7r/eOPW102mRX2jo47BZTXj3oxWSAZMul4XcpimfW5z6i4mL9LiBxWYSJrcKK3P/t6L0oC7cxOZlBlYWZrJIHP6NGuMp97Sq3rIBS466L3bV5dSF7L+bP1nB6K8U4Gf5ocu0Jwk3gxrx6gugEKi0yWVmpcvuUwTdVdQ4hcpbnS5uYDxewuPS5fmggwmjWYnvjePtlldaos4cEOG3ra7JhlpV6yqGygbnUd7cTXKgDd5g+ug=
 
 otp_release:
-  - "R16B03-1"
   - "19.3"
   - "20.1"
 
@@ -34,6 +39,11 @@ before_script:
     git remote add upstream https://github.com/$TRAVIS_REPO_SLUG.git
     git fetch upstream stable:stable || :
     git fetch upstream master:master || :
+  # Make sure we use Elixir from Erlang Solutions and not kiex.
+  - |
+    echo YES | kiex implode
+    elixir --version
+    elixir --version | grep -q 'Elixir 1.4.5'
 
 script:
   - make xref
