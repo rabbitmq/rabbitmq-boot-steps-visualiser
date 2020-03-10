@@ -11,7 +11,7 @@
 %%   The Original Code is RabbitMQ Boot Steps Visualiser.
 %%
 %%   The Initial Developer of the Original Code is GoPivotal, Inc.
-%%   Copyright (c) 2011-2015 GoPivotal, Inc.  All rights reserved.
+%%   Copyright (c) 2011-2020 VMware, Inc. or its affiliates.  All rights reserved.
 
 -module(rabbit_boot_steps_visualiser_dispatch).
 
