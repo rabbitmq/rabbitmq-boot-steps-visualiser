@@ -19,9 +19,7 @@ It looks like this:
 
 # Installing #
 
-At the moment you have to build it from source since it uses RabbitMQ
-current master branch. For the next release of RabbitMQ the plugin
-will be able to provide a binary release of the plugin.
+You must build this plugin from source.
 
 Clone the `rabbitmq-umbrella`:
 
@@ -29,18 +27,12 @@ Clone the `rabbitmq-umbrella`:
 git clone https://github.com/rabbitmq/rabbitmq-public-umbrella.git
 cd rabbitmq-public-umbrella
 make co
+cd deps/rabbitmq_boot_steps_visualiser
+make dist
 ```
 
-Then clone the plugin's repo:
-
-```bash
-git clone https://github.com/rabbitmq/rabbitmq-boot-steps-visualiser.git
-cd rabbitmq-boot-steps-visualiser
-make
-```
-
-Copy the plugin's `.ez` file from the `./dist` folder into your
-RabbitMQ plugin's folder; then you can enable the plugin.
+Copy the plugin's `.ez` file from the `./plugins` folder into your
+RabbitMQ plugins folder. Then you can enable the plugin.
 
 # LICENSE #
 
