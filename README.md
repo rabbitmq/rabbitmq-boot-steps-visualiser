@@ -20,19 +20,21 @@ It looks like this:
 # Installing #
 
 You must build this plugin from source.
+See the RabbitMQ plugin [development guide](http://www.rabbitmq.com/plugin-development.html):
 
-Clone the `rabbitmq-umbrella`:
+TL;DR
+
+Clone the repo into the dep dir of rabbitmq-server
 
 ```bash
-git clone https://github.com/rabbitmq/rabbitmq-public-umbrella.git
-cd rabbitmq-public-umbrella
-make co
-cd deps/rabbitmq_boot_steps_visualiser
-make dist
-```
+git clone https://github.com/rabbitmq/rabbitmq-server.git
+cd rabbitmq-server
+git clone https://github.com/rabbitmq/rabbitmq-boot-steps-visualiser.git deps/rabbitmq_boot_steps_visualiser
 
-Copy the plugin's `.ez` file from the `./plugins` folder into your
-RabbitMQ plugins folder. Then you can enable the plugin.
+make -C deps/rabbitmq_boot_steps_visualiser
+
+make RABBITMQ_ENABLED_PLUGINS='rabbitmq_management rabbitmq_boot_steps_visualiser' run-broker
+```
 
 # LICENSE #
 

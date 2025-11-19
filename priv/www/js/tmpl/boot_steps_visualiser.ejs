@@ -16,24 +16,59 @@ $.ajax({
   cache: true,
   success: function() {
     var svgData = Viz(boot_steps_visualiser, "svg", "dot");
-    //
-    $.ajax({
-      url: "js/svg-pan-zoom.min.js",
-      dataType: "script",
-      cache: true,
-      success: function() {
-        $("#bootsteps").html(svgData);
-        var s = $('svg');
-        s.removeAttr('viewBox');
-        s.attr("width", "100%");
-        s.attr("height", "100%");
-        var pz = svgPanZoom('svg', {minZoom: 0.25});
-        pz.resize();
-        pz.fit();
-        pz.center();
-      }
+    $("#bootsteps").html(svgData);
+
+    var svg = document.querySelector('#bootsteps svg');
+    svg.style.width = '100%';
+    svg.style.height = '600px';
+    svg.style.cursor = 'grab';
+
+    var viewBox = {x: 0, y: 0, w: svg.viewBox.baseVal.width, h: svg.viewBox.baseVal.height};
+    svg.setAttribute('viewBox', viewBox.x + ' ' + viewBox.y + ' ' + viewBox.w + ' ' + viewBox.h);
+
+    var isPanning = false;
+    var startPoint = {x: 0, y: 0};
+
+    svg.addEventListener('mousedown', function(e) {
+      isPanning = true;
+      startPoint = {x: e.clientX, y: e.clientY};
+      svg.style.cursor = 'grabbing';
     });
-    //
+
+    svg.addEventListener('mousemove', function(e) {
+      if (!isPanning) return;
+      var dx = (e.clientX - startPoint.x) * viewBox.w / svg.clientWidth;
+      var dy = (e.clientY - startPoint.y) * viewBox.h / svg.clientHeight;
+      viewBox.x -= dx;
+      viewBox.y -= dy;
+      svg.setAttribute('viewBox', viewBox.x + ' ' + viewBox.y + ' ' + viewBox.w + ' ' + viewBox.h);
+      startPoint = {x: e.clientX, y: e.clientY};
+    });
+
+    svg.addEventListener('mouseup', function() {
+      isPanning = false;
+      svg.style.cursor = 'grab';
+    });
+
+    svg.addEventListener('mouseleave', function() {
+      isPanning = false;
+      svg.style.cursor = 'grab';
+    });
+
+    svg.addEventListener('wheel', function(e) {
+      e.preventDefault();
+      var delta = e.deltaY > 0 ? 1.1 : 0.9;
+      var pt = svg.createSVGPoint();
+      pt.x = e.clientX;
+      pt.y = e.clientY;
+      var svgP = pt.matrixTransform(svg.getScreenCTM().inverse());
+
+      viewBox.w *= delta;
+      viewBox.h *= delta;
+      viewBox.x = svgP.x - (svgP.x - viewBox.x) * delta;
+      viewBox.y = svgP.y - (svgP.y - viewBox.y) * delta;
+      svg.setAttribute('viewBox', viewBox.x + ' ' + viewBox.y + ' ' + viewBox.w + ' ' + viewBox.h);
+    });
   }
 });
 %>
